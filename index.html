@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DASH — Personal AI Operating System</title>
+  <meta name="description" content="DASH — An intelligent, minimal personal AI operating system living inside your Mac.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Subtle Backdrop -->
+  <div class="dash-os-canvas">
+
+    <!-- App Container -->
+    <div class="dash-shell">
+
+      <!-- LEFT SIDEBAR: Minimal Floating Glass Sidebar -->
+      <aside class="dash-sidebar" id="dashSidebar">
+        <!-- Top: Logo & Name -->
+        <div class="sidebar-top">
+          <div class="brand-cluster">
+            <div class="dash-emblem">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" opacity="0.4"/>
+                <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                <path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="currentColor" stroke-width="1.4" opacity="0.6"/>
+              </svg>
+            </div>
+            <span class="brand-name">DASH</span>
+          </div>
+          <button class="theme-switch-btn" id="btnThemeToggle" title="Toggle Theme (⌘T)" aria-label="Toggle Theme">
+            <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="sidebar-nav">
+          <button class="nav-item active" data-view="home">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
+          </button>
+
+          <button class="nav-item" data-view="chat">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Chat</span>
+            <span class="nav-badge" id="chatBadge" style="display: none;">1</span>
+          </button>
+
+          <button class="nav-item" data-view="tasks">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+              <polyline points="9 16 11 18 15 14"></polyline>
+            </svg>
+            <span>Tasks</span>
+          </button>
+
+          <button class="nav-item" data-view="projects">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+            <span>Projects</span>
+          </button>
+
+          <button class="nav-item" data-view="memory">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+              <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+              <path d="M12 12L2.5 7.5"></path>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+            <span>Memory</span>
+          </button>
+
+          <button class="nav-item" data-view="activity">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+            <span>Activity</span>
+          </button>
+        </nav>
+
+        <!-- Bottom: Settings & System Status -->
+        <div class="sidebar-bottom">
+          <button class="nav-item" data-view="settings" id="btnSidebarSettings">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            <span>Settings</span>
+          </button>
+
+          <div class="system-status-chip" title="Hardware Neural Runtime">
+            <span class="status-dot"></span>
+            <span class="status-name" id="coreStatusText">DASH Core Online</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT STAGE -->
+      <main class="dash-stage">
+
+        <!-- 1. HOME SCREEN VIEW -->
+        <section class="stage-view active-view" id="viewHome">
+          <div class="home-container">
+
+            <!-- Top Greeting -->
+            <div class="home-header">
+              <h1 class="greeting-heading" id="greetingHeader">Good evening, K.</h1>
+              <p class="greeting-subtext">What would you like to accomplish?</p>
+            </div>
+
+            <!-- Small Intelligent AI Core -->
+            <div class="core-interaction-area">
+              <div class="dash-ai-core state-idle" id="dashCore" title="DASH AI Core">
+                <div class="core-glass-disc">
+                  <div class="core-nucleus"></div>
+                  <div class="core-ring r1"></div>
+                  <div class="core-ring r2"></div>
+                  <div class="core-refraction"></div>
+                </div>
+              </div>
+              <span class="core-state-indicator" id="coreStateIndicator">Idle</span>
+            </div>
+
+            <!-- Floating Glass Command Bar -->
+            <div class="command-bar-wrapper">
+              <div class="floating-command-bar" id="commandBar">
+                <input 
+                  type="text" 
+                  class="command-input" 
+                  id="commandInput" 
+                  placeholder="Ask DASH anything..." 
+                  autocomplete="off"
+                  spellcheck="false"
+                >
+                <div class="command-actions">
+                  <button class="command-btn mic-btn" id="btnMicInput" title="Voice Mode" aria-label="Microphone">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                      <line x1="12" y1="19" x2="12" y2="23"></line>
+                      <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                  </button>
+
+                  <button class="command-btn send-btn" id="btnCommandSend" title="Send (Enter)" aria-label="Send">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                      <line x1="12" y1="19" x2="12" y2="5"></line>
+                      <polyline points="5 12 12 5 19 12"></polyline>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Action Glass Buttons -->
+            <div class="quick-actions-strip">
+              <button class="quick-action-pill" data-action="new_task">
+                <span>New Task</span>
+              </button>
+              <button class="quick-action-pill" data-action="open_project">
+                <span>Open Project</span>
+              </button>
+              <button class="quick-action-pill" data-action="start_focus">
+                <span>Start Focus</span>
+              </button>
+              <button class="quick-action-pill" data-action="ask_dash">
+                <span>Ask DASH</span>
+              </button>
+              <button class="quick-action-pill" data-action="view_memory">
+                <span>View Memory</span>
+              </button>
+            </div>
+
+            <!-- DASH Recent Activity Section -->
+            <div class="recent-activity-card">
+              <div class="activity-card-title">Recent Activity</div>
+              <ul class="activity-list" id="recentActivityList">
+                <li class="activity-item">
+                  <span class="activity-check">✓</span>
+                  <span class="activity-desc">Opened DASH project</span>
+                  <span class="activity-time">10m ago</span>
+                </li>
+                <li class="activity-item">
+                  <span class="activity-check">✓</span>
+                  <span class="activity-desc">Completed Focus Session</span>
+                  <span class="activity-time">45m ago</span>
+                </li>
+                <li class="activity-item">
+                  <span class="activity-check">✓</span>
+                  <span class="activity-desc">Added task "Fix microphone"</span>
+                  <span class="activity-time">2h ago</span>
+                </li>
+                <li class="activity-item">
+                  <span class="activity-check">✓</span>
+                  <span class="activity-desc">Asked DASH about Python</span>
+                  <span class="activity-time">Yesterday</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 2. CHAT VIEW: Centered Elegant Conversation Space -->
+        <section class="stage-view" id="viewChat" style="display: none;">
+          <div class="chat-workspace">
+            
+            <header class="chat-top-header">
+              <div class="chat-header-title">
+                <h2>Conversation</h2>
+                <span class="session-model-label">Ollama • Qwen 4B / Claude</span>
+              </div>
+              <button class="btn-glass-subtle" id="btnClearChat">Clear Conversation</button>
+            </header>
+
+            <!-- Scrollable Conversation Area with breathing room -->
+            <div class="chat-stream-container" id="chatStreamContainer">
+              
+              <!-- Example Conversation Flow -->
+              <div class="dialogue-block user-turn">
+                <div class="speaker-label">USER</div>
+                <div class="dialogue-content">Open my project and check the microphone.</div>
+              </div>
+
+              <div class="dialogue-block dash-turn">
+                <div class="speaker-label">DASH</div>
+                <div class="dialogue-content">
+                  I found the microphone module in <span class="code-token">main.py</span>. The audio input device is detected at 48000 Hz. The background listener is currently stopping after the first speech iteration due to single-pass handling.
+                </div>
+                <!-- Contextual Action Chips -->
+                <div class="contextual-chips">
+                  <button class="chip-btn" data-action="inspect_code">Inspect Code</button>
+                  <button class="chip-btn" data-action="fix_issue">Fix Issue</button>
+                  <button class="chip-btn" data-action="test_mic">Test Microphone</button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- AI Thinking State Multi-Step Indicator -->
+            <div class="thinking-stepper" id="thinkingStepper" style="display: none;">
+              <div class="stepper-label">DASH</div>
+              <div class="stepper-status">Thinking</div>
+              <div class="stepper-stages">
+                <div class="step-line active">
+                  <span class="step-indicator"></span>
+                  <span class="step-text" id="step1Text">Analyzing microphone.py</span>
+                </div>
+                <div class="step-line" id="step2">
+                  <span class="step-indicator"></span>
+                  <span class="step-text" id="step2Text">Checking audio listener</span>
+                </div>
+                <div class="step-line" id="step3">
+                  <span class="step-indicator"></span>
+                  <span class="step-text" id="step3Text">Preparing response</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chat Dedicated Input Deck -->
+            <div class="chat-input-deck">
+              <div class="chat-input-bar">
+                <textarea 
+                  class="chat-textarea" 
+                  id="chatInput" 
+                  placeholder="Ask DASH anything..." 
+                  rows="1"
+                ></textarea>
+                <div class="chat-input-actions">
+                  <button class="command-btn mic-btn" id="btnChatMic" title="Voice Input" aria-label="Microphone">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                      <line x1="12" y1="19" x2="12" y2="23"></line>
+                    </svg>
+                  </button>
+                  <button class="command-btn send-btn" id="btnChatSend" title="Send (Enter)" aria-label="Send">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                      <line x1="12" y1="19" x2="12" y2="5"></line>
+                      <polyline points="5 12 12 5 19 12"></polyline>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 3. TASKS VIEW -->
+        <section class="stage-view" id="viewTasks" style="display: none;">
+          <div class="stage-padded-container">
+            <div class="view-header-row">
+              <div>
+                <h2>Tasks</h2>
+                <p class="section-subtext">Active objectives managed autonomously by DASH.</p>
+              </div>
+              <button class="btn-primary-glass" id="btnAddTaskModal">+ New Task</button>
+            </div>
+
+            <div class="tasks-table-container">
+              <div class="task-card-item">
+                <div class="task-left">
+                  <span class="task-bullet in-progress"></span>
+                  <div>
+                    <h4 class="task-name">Fix microphone listener loop</h4>
+                    <p class="task-sub">Keep audio stream open across multiple speech generations.</p>
+                  </div>
+                </div>
+                <div class="task-right">
+                  <span class="badge in-progress">In Progress</span>
+                  <span class="task-meta">Priority 1 • main.py</span>
+                </div>
+              </div>
+
+              <div class="task-card-item">
+                <div class="task-left">
+                  <span class="task-bullet queued"></span>
+                  <div>
+                    <h4 class="task-name">Refactor system prompt to K personality</h4>
+                    <p class="task-sub">Ensure responses are concise, calm, and intelligent.</p>
+                  </div>
+                </div>
+                <div class="task-right">
+                  <span class="badge queued">Queued</span>
+                  <span class="task-meta">Priority 2 • config</span>
+                </div>
+              </div>
+
+              <div class="task-card-item">
+                <div class="task-left">
+                  <span class="task-bullet completed"></span>
+                  <div>
+                    <h4 class="task-name">Liquid Glass UI Redesign</h4>
+                    <p class="task-sub">Implement Apple liquid glass, calm layout, and dark/light modes.</p>
+                  </div>
+                </div>
+                <div class="task-right">
+                  <span class="badge completed">Completed</span>
+                  <span class="task-meta">Frontend • dash_ai</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. PROJECTS VIEW -->
+        <section class="stage-view" id="viewProjects" style="display: none;">
+          <div class="stage-padded-container">
+            <div class="view-header-row">
+              <div>
+                <h2>Projects</h2>
+                <p class="section-subtext">Workspace codebases and continuous environments.</p>
+              </div>
+            </div>
+
+            <div class="projects-grid">
+              <div class="project-card">
+                <div class="project-top">
+                  <span class="project-tag">Active Repository</span>
+                  <span class="project-branch">main</span>
+                </div>
+                <h3>dash_ai</h3>
+                <p class="project-path">/Users/prateekkheti/Coding/Project/dash_ai</p>
+                <div class="project-details">
+                  <span>Python 3.14 + Ollama</span>
+                  <span>Audio & Speech Engine</span>
+                </div>
+                <div class="project-actions">
+                  <button class="btn-glass-subtle" onclick="triggerDashCommand('Open dash_ai in Cursor')">Open in IDE</button>
+                  <button class="btn-glass-subtle" onclick="triggerDashCommand('Run git status on dash_ai')">Git Status</button>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <div class="project-top">
+                  <span class="project-tag queued">Background Daemon</span>
+                  <span class="project-branch">v1.0</span>
+                </div>
+                <h3>macOS Native Audio Bridge</h3>
+                <p class="project-path">CoreAudio & PortAudio Subsystem</p>
+                <div class="project-details">
+                  <span>Continuous 48000 Hz Buffer</span>
+                  <span>Say TTS Engine</span>
+                </div>
+                <div class="project-actions">
+                  <button class="btn-glass-subtle" onclick="triggerDashCommand('Test audio input stream')">Test Audio</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. MEMORY VIEW -->
+        <section class="stage-view" id="viewMemory" style="display: none;">
+          <div class="stage-padded-container">
+            <div class="view-header-row">
+              <div>
+                <h2>Memory</h2>
+                <p class="section-subtext">Long-term persistent context DASH maintains about you.</p>
+              </div>
+              <button class="btn-glass-subtle" id="btnAddMemoryItem">+ Add Fact</button>
+            </div>
+
+            <div class="memory-ledger" id="memoryLedger">
+              <div class="memory-entry">
+                <div class="memory-key">User Identity</div>
+                <div class="memory-value">K — Developer, prefers calm and concise communication without boilerplate.</div>
+              </div>
+              <div class="memory-entry">
+                <div class="memory-key">Primary Environment</div>
+                <div class="memory-value">macOS (Apple Silicon), coding in Python, TypeScript, and native tools.</div>
+              </div>
+              <div class="memory-entry">
+                <div class="memory-key">Voice Engine</div>
+                <div class="memory-value">macOS native "Daniel" TTS at rate 165 wpm. Whisper local model for speech recognition.</div>
+              </div>
+              <div class="memory-entry">
+                <div class="memory-key">AI Philosophy</div>
+                <div class="memory-value">Personal AI living on computer; no generic chat bubbles, calm cinematic minimalism.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. ACTIVITY VIEW -->
+        <section class="stage-view" id="viewActivity" style="display: none;">
+          <div class="stage-padded-container">
+            <div class="view-header-row">
+              <div>
+                <h2>Activity Log</h2>
+                <p class="section-subtext">Chronological stream of system executions and assistant events.</p>
+              </div>
+            </div>
+
+            <div class="timeline-stream" id="activityTimeline">
+              <div class="timeline-row">
+                <div class="timeline-time">23:05</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-title">Liquid Glass UI Engine Initialized</div>
+                  <div class="timeline-desc">Switched to Apple Liquid Glass design language with light/dark calm themes.</div>
+                </div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">22:45</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-title">Local Ollama Status Checked</div>
+                  <div class="timeline-desc">Verified connectivity with local brain endpoint at port 11434.</div>
+                </div>
+              </div>
+              <div class="timeline-row">
+                <div class="timeline-time">22:30</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-title">Microphone Buffer Calibrated</div>
+                  <div class="timeline-desc">Default input device: Built-in Microphone at 48000 Hz.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. SETTINGS VIEW -->
+        <section class="stage-view" id="viewSettings" style="display: none;">
+          <div class="stage-padded-container">
+            <div class="view-header-row">
+              <div>
+                <h2>Settings</h2>
+                <p class="section-subtext">System preferences, intelligence provider, and interface appearance.</p>
+              </div>
+            </div>
+
+            <div class="settings-sheet">
+              <div class="setting-group">
+                <h3>Appearance & Theme</h3>
+                <div class="setting-row">
+                  <div>
+                    <label>Interface Theme</label>
+                    <p class="setting-desc">Switch between calm Apple Dark and Liquid Glass Light.</p>
+                  </div>
+                  <select id="selectThemeMode">
+                    <option value="dark">Dark Mode (#0B0B0D)</option>
+                    <option value="light">Light Mode (#F5F5F7)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="setting-group">
+                <h3>AI Intelligence Provider</h3>
+                <div class="setting-row">
+                  <div>
+                    <label>Ollama Local Endpoint</label>
+                    <p class="setting-desc">Port and host for offline private inference.</p>
+                  </div>
+                  <input type="text" id="settingOllamaUrl" value="http://localhost:11434">
+                </div>
+                <div class="setting-row">
+                  <div>
+                    <label>Active Model</label>
+                    <p class="setting-desc">Primary neural engine for reasoning and tasks.</p>
+                  </div>
+                  <select id="selectModel">
+                    <option value="qwen3:4b">qwen3:4b (Local DASH Default)</option>
+                    <option value="claude-3-7-sonnet">Claude 3.7 Sonnet (Hybrid Cloud)</option>
+                    <option value="claude-opus-4-6">Claude Opus 4-6</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="setting-group">
+                <h3>Voice & Speech</h3>
+                <div class="setting-row">
+                  <div>
+                    <label>Speech Output (TTS)</label>
+                    <p class="setting-desc">macOS native high-fidelity synthesizer.</p>
+                  </div>
+                  <select id="selectVoice">
+                    <option value="Daniel">Daniel (macOS British English)</option>
+                    <option value="Samantha">Samantha (macOS American English)</option>
+                    <option value="Muted">Muted (Visual Only)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- VOICE MODE OVERLAY (Special focused voice interface) -->
+    <div class="voice-mode-overlay" id="voiceModeOverlay" style="display: none;">
+      <div class="voice-overlay-content">
+        <button class="voice-exit-btn" id="btnExitVoice" title="Exit Voice Mode (Esc)">✕</button>
+
+        <div class="voice-center-core">
+          <div class="dash-ai-core state-listening" id="voiceCore">
+            <div class="core-glass-disc">
+              <div class="core-nucleus"></div>
+              <div class="core-ring r1"></div>
+              <div class="core-ring r2"></div>
+              <div class="core-refraction"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="voice-status-text" id="voiceStatusLabel">Listening...</div>
+
+        <!-- Live Reactive Waveform -->
+        <div class="voice-waveform" id="voiceWaveform">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <div class="voice-transcription-preview" id="voiceTranscriptPreview">
+          Speak naturally to DASH...
+        </div>
+
+        <div class="voice-hint">Click core or press Space to finish speaking</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
